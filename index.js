@@ -1,31 +1,9 @@
-const { ApolloServer, gql } = require("apollo-server");
+const { ApolloServer } = require('apollo-server')
 
-const ActivitiesAPI = require("./sources/ActivitiesAPI");
+const typeDefs = require('./schema')
+const resolvers = require('./resolvers')
 
-const typeDefs = gql`
-  type Post {
-    userId: Int
-    id: Int
-    title: String
-    body: String
-  }
-
-  type Query {
-    posts: [Post]!
-    post(id: Int!): Post
-  }
-`;
-
-const resolvers = {
-  Query: {
-    posts: async (_source, _args, { dataSources }) => {
-      return dataSources.ActivitiesAPI.getPosts();
-    },
-    post: async (_source, { id }, { dataSources }) => {
-      return dataSources.ActivitiesAPI.getPost(id);
-    }
-  }
-};
+const ActivitiesAPI = require('./sources/ActivitiesAPI')
 
 const server = new ApolloServer({
   typeDefs,
@@ -33,10 +11,10 @@ const server = new ApolloServer({
   dataSources: () => {
     return {
       ActivitiesAPI: new ActivitiesAPI()
-    };
+    }
   }
-});
+})
 
 server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+  console.log(`🚀  Server ready at ${url}`)
+})
