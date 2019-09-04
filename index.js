@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require("apollo-server");
 
-const ActivitiesAPI = require("./sources/Activities");
+const ActivitiesAPI = require("./sources/ActivitiesAPI");
 
 const typeDefs = gql`
   type Post {
