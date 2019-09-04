@@ -1,0 +1,25 @@
+{
+  "name": "pipedrive-graphql",
+  "version": "0.0.1",
+  "description": "GraphQL wrapper for Pipedrive Rest API",
+  "scripts": {
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore . --fix",
+    "serve": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/MarcelloTheArcane/pipedrive-graphql.git",
+  "author": "@marcellothearcane",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.5.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.3.0",
+    "nodemon": "^1.19.2"
+  }
+}
