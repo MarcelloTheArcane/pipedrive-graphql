@@ -1,16 +1,20 @@
-const express = require('express')
-const graphqlHttp = require('express-graphql')
+const { ApolloServer } = require('apollo-server')
 
-const schema = require('./schema')
+const typeDefs = require('./schema')
+const resolvers = require('./resolvers')
 
-const app = express()
+const ActivitiesAPI = require('./sources/ActivitiesAPI')
 
-app.use(
-  '/graphql',
-  graphqlHttp({
-    schema: schema,
-    graphiql: true,
-  }),
-)
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  dataSources: () => {
+    return {
+      ActivitiesAPI: new ActivitiesAPI()
+    }
+  }
+})
 
-app.listen(4000, () => console.log('Listening on http://localhost:4000/graphql'))
+server.listen().then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`)
+})
