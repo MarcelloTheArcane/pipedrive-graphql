@@ -1,17 +1,21 @@
-const { RESTDataSource } = require("apollo-datasource-rest");
+require("dotenv").config()
+
+const { RESTDataSource } = require('apollo-datasource-rest')
 
 class ActivitiesAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = "https://jsonplaceholder.typicode.com/";
+    this.baseURL = 'https://api.pipedrive.com/v1/';
   }
 
-  async getPosts() {
-    return this.get(`posts`);
+  willSendRequest(request) {
+    request.params.set('api_token', process.env.PIPEDRIVE_API_KEY);
   }
 
-  async getPost(id) {
-    return this.get(`posts/${id}`);
+  // Resolvers
+  async getActivities() {
+    const { data } = await this.get(`activities`);
+    return data;
   }
 }
 
