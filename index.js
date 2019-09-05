@@ -3,7 +3,7 @@ const { ApolloServer } = require('apollo-server')
 const typeDefs = require('./schema')
 const resolvers = require('./resolvers')
 
-const ActivitiesAPI = require('./sources/ActivitiesAPI')
+const DataSource = require('./sources/index')
 
 const getUser = require('./auth')
 
@@ -12,7 +12,7 @@ const server = new ApolloServer({
   resolvers,
   dataSources: () => {
     return {
-      ActivitiesAPI: new ActivitiesAPI(),
+      DataSource: new DataSource(),
     }
   },
   context: ({ req }) => {

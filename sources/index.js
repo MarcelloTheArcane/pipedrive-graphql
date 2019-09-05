@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const { RESTDataSource } = require('apollo-datasource-rest')
 
-class ActivitiesAPI extends RESTDataSource {
+class DataSource extends RESTDataSource {
   constructor () {
     super()
     this.baseURL = 'https://api.pipedrive.com/v1/'
@@ -189,4 +189,4 @@ class ActivitiesAPI extends RESTDataSource {
   }
 }
 
-module.exports = ActivitiesAPI
+module.exports = DataSource
