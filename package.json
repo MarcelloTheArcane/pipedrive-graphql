@@ -1,6 +1,6 @@
 {
   "name": "pipedrive-graphql",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "GraphQL wrapper for Pipedrive Rest API",
   "scripts": {
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore . --fix",
