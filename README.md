@@ -67,6 +67,7 @@ You'll need to configure the environment variables depending on your system.
 
     ```bash
     now secrets add pipedrive-api-key <...>
+    now secrets add jwt-signing-key <...>
     ```
 
 - [Heroku environment variables documentation](https://devcenter.heroku.com/articles/config-vars)
