@@ -1,6 +1,5 @@
 require('dotenv').config()
 
-const jwt = require('jsonwebtoken')
 const AuthenticationError = require('apollo-server').AuthenticationError
 
 module.exports = function (token) {
@@ -8,23 +7,17 @@ module.exports = function (token) {
     throw new AuthenticationError('No token found')
   }
 
-  const match = token.match(/^Bearer (.*)$/)
+  const match = token.match(/^Basic (.*)$/)
 
   if (!match && !match[1]) {
-    throw new AuthenticationError('Expected Bearer token')
+    throw new AuthenticationError('Expected Basic token')
   }
 
-  verifyUser(match[1])
-}
+  if (match[1] !== process.env.BASIC_AUTH_KEY) {
+    throw new AuthenticationError('Incorrect Authorization')
+  }
 
-function verifyUser (token) {
-  try {
-    const key = Buffer.from(process.env.JWT_SIGNING_KEY, 'base64').toString()
-    const user = jwt.verify(token, key)
-
-    return user['https://hasura.io/jwt/claims']
-  } catch (err) {
-    console.error(err)
-    throw new AuthenticationError('User token is invalid')
+  return {
+    username: Buffer.from(match[1], 'base64').toString().split(':')[0]
   }
 }

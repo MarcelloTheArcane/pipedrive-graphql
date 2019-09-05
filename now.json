@@ -10,7 +10,7 @@
   "build": {
     "env": {
       "PIPEDRIVE_API_KEY": "@pipedrive-api-key",
-      "JWT_SIGNING_KEY": "@jwt-signing-key"
+      "BASIC_AUTH_KEY": "@basic-auth-key"
     }
   }
 }

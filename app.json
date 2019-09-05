@@ -9,8 +9,8 @@
       "required": true,
       "value": ""
     },
-    "JWT_SIGNING_KEY": {
-      "description": "Signing key used by JWT authentication",
+    "BASIC_AUTH_KEY": {
+      "description": "Basic authentication token (Base64)",
       "required": true,
       "value": ""
     }

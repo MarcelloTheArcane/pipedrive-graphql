@@ -22,10 +22,12 @@ This repository uses [Yarn](https://yarnpkg.com).
 
 ```env
 PIPEDRIVE_API_KEY=<...>
-JWT_SIGNING_KEY=<...>
+BASIC_AUTH_KEY=<...>
 ```
 
 [How to find your Pipedrive API key](https://pipedrive.readme.io/docs/how-to-find-the-api-token?utm_source=api_reference)
+
+> This branch uses **Basic Authentication**. For **JWT Authentication** see the `master` branch.
 
 ### Run:
 
@@ -69,7 +71,7 @@ You'll need to configure the environment variables depending on your system.
 
     ```bash
     now secrets add pipedrive-api-key <...>
-    now secrets add jwt-signing-key <...>
+    now secrets add basic-auth-key <...>
     ```
 
 - [Heroku environment variables documentation](https://devcenter.heroku.com/articles/config-vars)
