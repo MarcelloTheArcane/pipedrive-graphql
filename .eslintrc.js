@@ -10,6 +10,7 @@ module.exports = {
   },
   extends: [],
   rules: {
+    'semi': ['warn', 'never'],
     'comma-dangle': ['warn', 'always-multiline'],
     'no-trailing-spaces': ['warn', {
       skipBlankLines: false,
