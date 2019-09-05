@@ -22,6 +22,7 @@ This repository uses [Yarn](https://yarnpkg.com).
 
 ```env
 PIPEDRIVE_API_KEY=<...>
+JWT_SIGNING_KEY=<...>
 ```
 
 [How to find your Pipedrive API key](https://pipedrive.readme.io/docs/how-to-find-the-api-token?utm_source=api_reference)
