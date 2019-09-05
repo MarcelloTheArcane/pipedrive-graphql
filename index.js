@@ -13,6 +13,8 @@ const server = new ApolloServer({
       ActivitiesAPI: new ActivitiesAPI(),
     }
   },
+  introspection: true,
+  playground: true,
 })
 
 server.listen().then(({ url }) => {
