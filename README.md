@@ -2,7 +2,6 @@
 
 [Pipedrive](https://pipedrive.com)
 
-
 ## Getting started
 
 ### Install dependencies:
@@ -61,12 +60,12 @@ You can deploy this to [Zeit Now](https://zeit.co) or [Heroku](https://heroku.co
 
 You'll need to configure the environment variables depending on your system.
 
- - [Zeit Now environment variables documentation](https://zeit.co/docs/v2/build-step#adding-secrets)
+- [Zeit Now environment variables documentation](https://zeit.co/docs/v2/build-step#adding-secrets)
    
-  `now.json` is preconfigured - all you have to do is add the variable via the command line:
+    `now.json` is preconfigured - all you have to do is add the variable via the command line:
 
-  ```bash
-  now secrets add pipedrive-api-key <...>
-  ```
+    ```bash
+    now secrets add pipedrive-api-key <...>
+    ```
 
- - [Heroku environment variables documentation](https://devcenter.heroku.com/articles/config-vars)
+- [Heroku environment variables documentation](https://devcenter.heroku.com/articles/config-vars)
