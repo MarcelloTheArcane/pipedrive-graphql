@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@now/node",
+      "config": {}
+    }
+  ],
+  "build": {
+    "env": {
+      "PIPEDRIVE_API_KEY": "@pipedrive-api-key"
+    }
+  }
+}
