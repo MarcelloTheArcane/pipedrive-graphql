@@ -10,9 +10,9 @@ const server = new ApolloServer({
   resolvers,
   dataSources: () => {
     return {
-      ActivitiesAPI: new ActivitiesAPI()
+      ActivitiesAPI: new ActivitiesAPI(),
     }
-  }
+  },
 })
 
 server.listen().then(({ url }) => {
