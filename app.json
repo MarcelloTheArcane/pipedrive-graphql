@@ -1,0 +1,18 @@
+{
+  "name": "Pipedrive GraphQL API",
+  "description": "GraphQL wrapper for Pipedrive REST API",
+  "repository": "https://github.com/MarcelloTheArcane/pipedrive-graphql",
+  "keywords": ["node", "rest", "graphql", "wrapper", "pipedrive", "apollo"],
+  "env": {
+    "PIPEDRIVE_API_KEY": {
+      "description": "Pipedrive API key",
+      "required": true,
+      "value": ""
+    },
+    "JWT_SIGNING_KEY": {
+      "description": "Signing key used by JWT authentication",
+      "required": true,
+      "value": ""
+    }
+  }
+}

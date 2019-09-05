@@ -59,6 +59,8 @@ npm run start
 
 You can deploy this to [Zeit Now](https://zeit.co) or [Heroku](https://heroku.com) straight out of the box.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 You'll need to configure the environment variables depending on your system.
 
 - [Zeit Now environment variables documentation](https://zeit.co/docs/v2/build-step#adding-secrets)
@@ -71,3 +73,5 @@ You'll need to configure the environment variables depending on your system.
     ```
 
 - [Heroku environment variables documentation](https://devcenter.heroku.com/articles/config-vars)
+    
+    Deploy with the button above, then visit the [Heroku dashboard](https://dashboard.heroku.com) to set the variables.
