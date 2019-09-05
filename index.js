@@ -5,6 +5,8 @@ const resolvers = require('./resolvers')
 
 const ActivitiesAPI = require('./sources/ActivitiesAPI')
 
+const getUser = require('./auth')
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -12,6 +14,11 @@ const server = new ApolloServer({
     return {
       ActivitiesAPI: new ActivitiesAPI(),
     }
+  },
+  context: ({ req }) => {
+    const token = req.headers.authorization || ''
+    const user = getUser(token)
+    return { user }
   },
   introspection: true,
   playground: true,
