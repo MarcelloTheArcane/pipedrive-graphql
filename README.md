@@ -9,7 +9,9 @@
 ```bash
 # Yarn
 yarn
+```
 
+```bash
 # NPM
 npm install
 ```
@@ -32,7 +34,9 @@ For testing, you can use the following command:
 ```bash
 # Yarn
 yarn serve
+```
 
+```bash
 # NPM
 npm run serve
 ```
@@ -44,7 +48,9 @@ Deploy to a server of your choice. It must run the `start` script:
 ```bash
 # Yarn
 yarn start
+```
 
+```bash
 # NPM
 npm run start
 ```
