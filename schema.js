@@ -926,331 +926,555 @@ module.exports = gql`
 
   type Query {
     activities (
-      # ID of the user whose activities will be fetched. If omitted, the user associated with the API token will be used. If 0, activities for all company users will be fetched based on the permission sets.
+      """
+      ID of the user whose activities will be fetched. If omitted, the user associated with the API token will be used. If 0, activities for all company users will be fetched based on the permission sets.
+      """
       user_id: Int
-      # ID of the filter to use (will narrow down results if used together with user_id parameter).
+      """
+      ID of the filter to use (will narrow down results if used together with user_id parameter).
+      """
       filter_id: Int
-      # Type of the activity, can be one type or multiple types separated by a comma. This is in correlation with the key_string parameter of ActivityTypes.
+      """
+      Type of the activity, can be one type or multiple types separated by a comma. This is in correlation with the key_string parameter of ActivityTypes.
+      """
       type: String
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page
+      """
+      Items shown per page
+      """
       limit: Int
-      # Date in format of YYYY-MM-DD from which activities to fetch from.
+      """
+      Date in format of YYYY-MM-DD from which activities to fetch from.
+      """
       start_date: String
-      # Date in format of YYYY-MM-DD until which activities to fetch to.
+      """
+      Date in format of YYYY-MM-DD until which activities to fetch to.
+      """
       end_date: String
-      # Whether the activity is done or not. 0 = Not done, 1 = Done. If omitted returns both Done and Not done.
+      """
+      Whether the activity is done or not. 0 = Not done, 1 = Done. If omitted returns both Done and Not done.
+      """
       done: Int
     ): [Activity]
 
     activity (
-      # ID of the activity
+      """
+      ID of the activity
+      """
       id: Int!
     ): Activity
 
     activityTypes: [ActivityType]
 
     currencies (
-      # Optional search term that is searched for from currency's name and/or code.
+      """
+      Optional search term that is searched for from currency's name and/or code.
+      """
       term: String
     ): [Currency]
     
     deals (
-      # If supplied, only deals matching the given user will be returned.
+      """
+      If supplied, only deals matching the given user will be returned.
+      """
       user_id: Int
-      # ID of the filter to use
+      """
+      ID of the filter to use
+      """
       filter_id: Int
-      # If supplied, only deals within the given stage will be returned.
+      """
+      If supplied, only deals within the given stage will be returned.
+      """
       stage_id: Int
-      # Only fetch deals with specific status. If omitted, all not deleted deals are fetched.
+      """
+      Only fetch deals with specific status. If omitted, all not deleted deals are fetched.
+      """
       status: DealsStageEnum
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page. Default limit is 100, maximum limit is 500.
+      """
+      Items shown per page. Default limit is 100, maximum limit is 500.
+      """
       limit: Int
-      # Field names and sorting mode separated by a comma (field_name_1 ASC, field_name_2 DESC). Only first-level field keys are supported (no nested keys).
+      """
+      Field names and sorting mode separated by a comma (field_name_1 ASC, field_name_2 DESC). Only first-level field keys are supported (no nested keys).
+      """
       sort: String
-      # When supplied, only deals owned by you are returned. However filter_id takes precedence over owned_by_you when both are supplied.
+      """
+      When supplied, only deals owned by you are returned. However filter_id takes precedence over owned_by_you when both are supplied.
+      """
       owned_by_you: Int
     ): [Deal]
 
     findDeals (
-      # Search term to look for
+      """
+      Search term to look for
+      """
       term: String!
-      # ID of the person deal is associated with.
+      """
+      ID of the person deal is associated with.
+      """
       person_id: Int
-      # ID of the organization deal is associated with.
+      """
+      ID of the organization deal is associated with.
+      """
       org_id: Int
     ): [FindDeal]
 
     dealSummary (
-      # Only fetch deals with specific status. open = Open, won = Won, lost = Lost
+      """
+      Only fetch deals with specific status. open = Open, won = Won, lost = Lost
+      """
       status: DealSummaryStatusEnum
-      # user_id will not be considered. Only deals matching the given filter will be returned.
+      """
+      user_id will not be considered. Only deals matching the given filter will be returned.
+      """
       filter_id: Int
-      # Only deals matching the given user will be returned. user_id will not be considered if you use filter_id.
+      """
+      Only deals matching the given user will be returned. user_id will not be considered if you use filter_id.
+      """
       user_id: Int
-      # Only deals within the given stage will be returned.
+      """
+      Only deals within the given stage will be returned.
+      """
       stage_id: Int
     ): DealSummary
 
     dealsTimeline (
-      # Date where first interval starts. Format: YYYY-MM-DD
+      """
+      Date where first interval starts. Format: YYYY-MM-DD
+      """
       start_date: String!
-      # Type of interval - day: Day, week: A full week (7 days) starting from start_date, month: A full month (depending on the number of days in given month) starting from start_date, quarter: A full quarter (3 months) starting from start_date
+      """
+      Type of interval - day: Day, week: A full week (7 days) starting from start_date, month: A full month (depending on the number of days in given month) starting from start_date, quarter: A full quarter (3 months) starting from start_date
+      """
       interval: DealsTimelineIntervalEnum!
-      # Number of given intervals, starting from start_date, to fetch. E.g. 3 (months).
+      """
+      Number of given intervals, starting from start_date, to fetch. E.g. 3 (months).
+      """
       amount: Int!
-      # The name of the date field by which to get deals by.
+      """
+      The name of the date field by which to get deals by.
+      """
       field_key: String!
-      # If supplied, only deals matching the given user will be returned.
+      """
+      If supplied, only deals matching the given user will be returned.
+      """
       user_id: Int
-      # If supplied, only deals matching the given pipeline will be returned.
+      """
+      If supplied, only deals matching the given pipeline will be returned.
+      """
       pipeline_id: Int
-      # If supplied, only deals matching the given filter will be returned.
+      """
+      If supplied, only deals matching the given filter will be returned.
+      """
       filter_id: Int
-      # Whether to exclude deals list (1) or not (0). Note that when deals are excluded, the timeline summary (counts and values) is still returned.
+      """
+      Whether to exclude deals list (1) or not (0). Note that when deals are excluded, the timeline summary (counts and values) is still returned.
+      """
       exclude_deals: Int
-      # 3-letter currency code of any of the supported currencies. When supplied, totals_converted is returned per each interval which contains the currency-converted total amounts in the given currency. You may also set this parameter to 'default_currency' in which case users default currency is used.
+      """
+      3-letter currency code of any of the supported currencies. When supplied, totals_converted is returned per each interval which contains the currency-converted total amounts in the given currency. You may also set this parameter to 'default_currency' in which case users default currency is used.
+      """
       totals_convert_currency: String
     ): [DealsTimeline]
 
     deal (
-      # ID of the deal
+      """
+      ID of the deal
+      """
       id: Int!
     ): Deal
 
     dealActivities (
-      # ID of the deal
+      """
+      ID of the deal
+      """
       id: Int!
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page
+      """
+      Items shown per page
+      """
       limit: Int
-      # Whether to fetch done (1) or undone (0) activities. If omitted from request, both undone and done activities are fetched.
+      """
+      Whether to fetch done (1) or undone (0) activities. If omitted from request, both undone and done activities are fetched.
+      """
       done: Int
-      # A comma-separated string of activity IDs to exclude from result
+      """
+      A comma-separated string of activity IDs to exclude from result
+      """
       exclude: String
     ): [Activity]
 
     dealFollowers (
-      # ID of the deal
+      """
+      ID of the deal
+      """
       id: Int!
     ): [Follower]
 
     dealEmails (
-      # ID of the deal
+      """
+      ID of the deal
+      """
       id: Int
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page
+      """
+      Items shown per page
+      """
       limit: Int
     ): [Email]
 
     dealParticipants (
-      # ID of the deal
+      """
+      ID of the deal
+      """
       id: Int!
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page
+      """
+      Items shown per page
+      """
       limit: Int
     ): [DealParticipantDetail]
 
     dealEmailData (
-      # ID of the deal
+      """
+      ID of the deal
+      """
       id: Int!
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page
+      """
+      Items shown per page
+      """
       limit: Int
     ): EmailData
 
     permittedUsers (
-      # ID of the deal
+      """
+      ID of the deal
+      """
       id: Int!
-      # If set, filter results by allowed access level. 1 = Read, 2 = Write, 3 = Read+Write
+      """
+      If set, filter results by allowed access level. 1 = Read, 2 = Write, 3 = Read+Write
+      """
       access_level: Int
     ): [Int]
 
     associatedPersons (
-      # ID of the deal
+      """
+      ID of the deal
+      """
       id: Int!
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page
+      """
+      Items shown per page
+      """
       limit: Int
     ): [Person]
 
     files (
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page
+      """
+      Items shown per page
+      """
       limit: Int
-      # When enabled, the list of files will also include deleted files. Please note that trying to download these files will not work.
+      """
+      When enabled, the list of files will also include deleted files. Please note that trying to download these files will not work.
+      """
       include_deleted_files: Int
-      # Field names and sorting mode separated by a comma (field_name_1 ASC, field_name_2 DESC). Only first-level field keys are supported (no nested keys). Supported fields: id, user_id, deal_id, person_id, org_id, product_id, add_time, update_time, file_name, file_type, file_size, comment.
+      """
+      Field names and sorting mode separated by a comma (field_name_1 ASC, field_name_2 DESC). Only first-level field keys are supported (no nested keys). Supported fields: id, user_id, deal_id, person_id, org_id, product_id, add_time, update_time, file_name, file_type, file_size, comment.
+      """
       sort: String
     ): [File]
 
     file (
-      # ID of the file
+      """
+      ID of the file
+      """
       id: Int!
     ): File
 
     filters (
-      # Returns data about all filters
+      """
+      Returns data about all filters
+      """
       type: FiltersTypeEnum
     ): [Filter]
 
     filter (
-      # ID of the filter
+      """
+      ID of the filter
+      """
       id: Int!
     ): Filter
 
     emailMessage (
-      # ID of the mail message to fetch.
+      """
+      ID of the mail message to fetch.
+      """
       id: Int!
-      # Whether to include full message body or not. 0 = Don't include, 1 = Include
+      """
+      Whether to include full message body or not. 0 = Don't include, 1 = Include
+      """
       include_body: Int
     ): Email
 
     notes (
-      # ID of the user whose notes to fetch. If omitted, notes by all users will be returned.
+      """
+      ID of the user whose notes to fetch. If omitted, notes by all users will be returned.
+      """
       user_id: Int
-      # ID of the deal which notes to fetch. If omitted, notes about all deals with be returned.
+      """
+      ID of the deal which notes to fetch. If omitted, notes about all deals with be returned.
+      """
       deal_id: Int
-      # ID of the person whose notes to fetch. If omitted, notes about all persons with be returned.
+      """
+      ID of the person whose notes to fetch. If omitted, notes about all persons with be returned.
+      """
       person_id: Int
-      # ID of the organization which notes to fetch. If omitted, notes about all organizations with be returned.
+      """
+      ID of the organization which notes to fetch. If omitted, notes about all organizations with be returned.
+      """
       org_id: Int
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page
+      """
+      Items shown per page
+      """
       limit: Int
-      # Field names and sorting mode separated by a comma (field_name_1 ASC, field_name_2 DESC). Only first-level field keys are supported (no nested keys). Supported fields: id, user_id, deal_id, person_id, org_id, content, add_time, update_time.
+      """
+      Field names and sorting mode separated by a comma (field_name_1 ASC, field_name_2 DESC). Only first-level field keys are supported (no nested keys). Supported fields: id, user_id, deal_id, person_id, org_id, content, add_time, update_time.
+      """
       sort: String
-      # Date in format of YYYY-MM-DD from which notes to fetch from.
+      """
+      Date in format of YYYY-MM-DD from which notes to fetch from.
+      """
       start_date: String
-      # Date in format of YYYY-MM-DD until which notes to fetch to.
+      """
+      Date in format of YYYY-MM-DD until which notes to fetch to.
+      """
       end_date: String
-      # If set, then results are filtered by note to deal pinning state.
+      """
+      If set, then results are filtered by note to deal pinning state.
+      """
       pinned_to_deal_flag: Int
-      # If set, then results are filtered by note to organization pinning state.
+      """
+      If set, then results are filtered by note to organization pinning state.
+      """
       pinned_to_organization_flag: Int
-      # If set, then results are filtered by note to person pinning state.
+      """
+      If set, then results are filtered by note to person pinning state.
+      """
       pinned_to_person_flag: Int
     ): [Note]
 
     note (
-      # ID of the note
+      """
+      ID of the note
+      """
       id: Int!
     ): Note
 
     organizations (
-      # If supplied, only organizations owned by the given user will be returned.
+      """
+      If supplied, only organizations owned by the given user will be returned.
+      """
       user_id: Int
-      # ID of the filter to use
+      """
+      ID of the filter to use
+      """
       filter_id: Int
-      # If supplied, only organizations whose name starts with the specified letter will be returned (case insensitive).
+      """
+      If supplied, only organizations whose name starts with the specified letter will be returned (case insensitive).
+      """
       first_char: String
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page
+      """
+      Items shown per page
+      """
       limit: Int
-      # Field names and sorting mode separated by a comma (field_name_1 ASC, field_name_2 DESC). Only first-level field keys are supported (no nested keys).
+      """
+      Field names and sorting mode separated by a comma (field_name_1 ASC, field_name_2 DESC). Only first-level field keys are supported (no nested keys).
+      """
       sort: String
     ): [Organization]
 
     organization (
-      # ID of the note
+      """
+      ID of the note
+      """
       id: Int!
     ): Organization
 
     persons (
-      # If supplied, only persons owned by the given user will be returned.
+      """
+      If supplied, only persons owned by the given user will be returned.
+      """
       user_id: Int
-      # ID of the filter to use
+      """
+      ID of the filter to use
+      """
       filter_id: Int
-      # If supplied, only persons whose name starts with the specified letter will be returned (case insensitive).
+      """
+      If supplied, only persons whose name starts with the specified letter will be returned (case insensitive).
+      """
       first_char: String
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page
+      """
+      Items shown per page
+      """
       limit: Int
-      # Field names and sorting mode separated by a comma (field_name_1 ASC, field_name_2 DESC). Only first-level field keys are supported (no nested keys).
+      """
+      Field names and sorting mode separated by a comma (field_name_1 ASC, field_name_2 DESC). Only first-level field keys are supported (no nested keys).
+      """
       sort: String
     ): [Person]
 
     findPersons (
-      # Search term to look for
+      """
+      Search term to look for
+      """
       term: String!
-      # ID of the organization person is associated with.
+      """
+      ID of the organization person is associated with.
+      """
       org_id: Int
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page
+      """
+      Items shown per page
+      """
       limit: Int
-      # When enabled, term will only be matched against email addresses of people. Default: false
+      """
+      When enabled, term will only be matched against email addresses of people. Default: false
+      """
       search_by_email: Int
     ): [Person]
 
     person (
-      # ID of the person
+      """
+      ID of the person
+      """
       id: Int!
     ): Person
 
     pipelines: [Pipeline]
 
     pipeline (
-      # ID of the pipeline to fetch.
+      """
+      ID of the pipeline to fetch.
+      """
       id: Int!
-      # 3-letter currency code of any of the supported currencies. When supplied, per_stages_converted is returned in deals_summary which contains the currency-converted total amounts in the given currency per each stage. You may also set this parameter to 'default_currency' in which case users default currency is used.
+      """
+      3-letter currency code of any of the supported currencies. When supplied, per_stages_converted is returned in deals_summary which contains the currency-converted total amounts in the given currency per each stage. You may also set this parameter to 'default_currency' in which case users default currency is used.
+      """
       totals_convert_currency: String
     ): Pipeline
 
     dealsInPipeline (
-      # ID of the pipeline to fetch.
+      """
+      ID of the pipeline to fetch.
+      """
       id: Int!
-      # If supplied, only deals matching the given filter will be returned.
+      """
+      If supplied, only deals matching the given filter will be returned.
+      """
       filter_id: Int
-      # If supplied, filter_id will not be considered and only deals owned by the given user will be returned. If omitted, deals owned by the authorized user will be returned.
+      """
+      If supplied, filter_id will not be considered and only deals owned by the given user will be returned. If omitted, deals owned by the authorized user will be returned.
+      """
       user_id: Int
-      # If supplied, filter_id and user_id will not be considered – instead, deals owned by everyone will be returned.
+      """
+      If supplied, filter_id and user_id will not be considered – instead, deals owned by everyone will be returned.
+      """
       everyone: Int
-      # If supplied, only deals within the given stage will be returned.
+      """
+      If supplied, only deals within the given stage will be returned.
+      """
       stage_id: Int
-      # Pagination start
+      """
+      Pagination start
+      """
       start: Int
-      # Items shown per page
+      """
+      Items shown per page
+      """
       limit: Int
-      # Whether to include summary of the pipeline in the additional_data or not.
+      """
+      Whether to include summary of the pipeline in the additional_data or not.
+      """
       get_summary: Int
-      # 3-letter currency code of any of the supported currencies. When supplied, per_stages_converted is returned inside deals_summary inside additional_data which contains the currency-converted total amounts in the given currency per each stage. You may also set this parameter to 'default_currency' in which case users default currency is used. Only works when get_summary parameter flag is enabled.
+      """
+      3-letter currency code of any of the supported currencies. When supplied, per_stages_converted is returned inside deals_summary inside additional_data which contains the currency-converted total amounts in the given currency per each stage. You may also set this parameter to 'default_currency' in which case users default currency is used. Only works when get_summary parameter flag is enabled.
+      """
       totals_convert_currency: String
     ): [Deal]
 
     stages (
-      # ID of the pipeline to fetch stages for. If omitted, stages for all pipelines will be fetched.
+      """
+      ID of the pipeline to fetch stages for. If omitted, stages for all pipelines will be fetched.
+      """
       pipeline_id: Int
     ): [Stage]
 
     stage (
-      # ID of the stage
+      """
+      ID of the stage
+      """
       id: Int!
     ): Stage
 
     users: [User]
 
     findUsers (
-      # Search term to look for
+      """
+      Search term to look for
+      """
       term: String
-      # When enabled, term will only be matched against email addresses of users. Default: false
+      """
+      When enabled, term will only be matched against email addresses of users. Default: false
+      """
       search_by_email: Int
     ): [User]
 
     user (
-      # ID of the user to fetch.
+      """
+      ID of the user to fetch.
+      """
       id: Int!
     ): User
 
