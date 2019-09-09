@@ -1,16 +1,15 @@
 {
   "version": 2,
+  "name": "pipedrive-graphql",
+  "env": {
+    "PIPEDRIVE_API_KEY": "@pipedrive-api-key",
+    "JWT_SIGNING_KEY": "@jwt-signing-key"
+  },
   "builds": [
     {
       "src": "index.js",
       "use": "@now/node",
       "config": {}
     }
-  ],
-  "build": {
-    "env": {
-      "PIPEDRIVE_API_KEY": "@pipedrive-api-key",
-      "JWT_SIGNING_KEY": "@jwt-signing-key"
-    }
-  }
+  ]
 }
