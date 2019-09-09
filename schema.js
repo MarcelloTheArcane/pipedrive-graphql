@@ -732,7 +732,7 @@ module.exports = gql`
   }
 
   type User {
-    id: Int
+    id: Int!
     name: String
     default_currency: String
     locale: String
@@ -1003,7 +1003,7 @@ module.exports = gql`
       # Number of given intervals, starting from start_date, to fetch. E.g. 3 (months).
       amount: Int!
       # The name of the date field by which to get deals by.
-      field_key: String
+      field_key: String!
       # If supplied, only deals matching the given user will be returned.
       user_id: Int
       # If supplied, only deals matching the given pipeline will be returned.
