@@ -108,5 +108,5 @@ module.exports = {
     userSettings: async (_source, _args, { dataSources }) => {
       return dataSources.ActivitiesAPI.getUserSettings()
     },
-  }
+  },
 }
