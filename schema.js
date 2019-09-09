@@ -231,9 +231,87 @@ module.exports = gql`
   }
 
   type DealsTimeline {
-    deals: [Deal]
+    deals: [DealsTimelineDeal]
     period_start: String
     period_end: String
+    totals: DealTimelineTotals
+  }
+
+  type DealsTimelineDeal {
+    id: Int!
+    creator_user_id: Int
+    user_id: Int
+    person_id: Int
+    org_id: Int
+    stage_id: Int
+    title: String
+    value: Float
+    currency: String
+    add_time: String
+    update_time: String
+    stage_change_time: String
+    active: Boolean
+    deleted: Boolean
+    status: String
+    probability: Int
+    next_activity_date: String
+    next_activity_time: String
+    next_activity_id: Int
+    last_activity_id: Int
+    last_activity_date: String
+    lost_reason: String
+    visible_to: String
+    close_time: String
+    pipeline_id: Int
+    won_time: String
+    first_won_time: String
+    lost_time: String
+    products_count: Int
+    files_count: Int
+    notes_count: Int
+    followers_count: Int
+    email_messages_count: Int
+    activities_count: Int
+    done_activities_count: Int
+    undone_activities_count: Int
+    reference_activities_count: Int
+    participants_count: Int
+    expected_close_date: String
+    last_incoming_mail_time: String
+    last_outgoing_mail_time: String
+    label: String
+    stage_order_nr: Int
+    person_name: String
+    org_name: String
+    next_activity_subject: String
+    next_activity_type: String
+    next_activity_duration: String
+    next_activity_note: String
+    formatted_value: String
+    weighted_value: Float
+    formatted_weighted_value: String
+    weighted_value_currency: String
+    rotten_time: String
+    owner_name: String
+    cc_email: String
+    org_hidden: Boolean
+    person_hidden: Boolean
+  }
+
+  type DealTimelineTotals {
+    count: Int
+    values: DealTimelineTotalsValues
+    weighted_values: DealTimelineTotalsValues
+    open_count: Int
+    open_values: DealTimelineTotalsValues
+    weighted_open_values: DealTimelineTotalsValues
+    won_count: Int
+    won_values: DealTimelineTotalsValues
+  }
+
+  type DealTimelineTotalsValues {
+    EUR: Float
+    GBP: Float
   }
 
   type DealDetail {
@@ -936,7 +1014,7 @@ module.exports = gql`
       exclude_deals: Int
       # 3-letter currency code of any of the supported currencies. When supplied, totals_converted is returned per each interval which contains the currency-converted total amounts in the given currency. You may also set this parameter to 'default_currency' in which case users default currency is used.
       totals_convert_currency: String
-    ): DealsTimeline
+    ): [DealsTimeline]
 
     deal (
       # ID of the deal
