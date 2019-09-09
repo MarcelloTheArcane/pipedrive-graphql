@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "GraphQL wrapper for Pipedrive Rest API",
   "scripts": {
-    "lint": "eslint --ext .js,.gql,.graphql --ignore-path .gitignore . --fix",
+    "lint": "eslint --ext .js --ignore-path .gitignore . --fix",
     "serve": "nodemon -e js,gql,.graphql,env index.js",
     "start": "node index.js"
   },
