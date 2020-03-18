@@ -5,7 +5,10 @@ module.exports = {
     node: true,
   },
   parserOptions: {
-    ecmaVersion: 2017,
+    ecmaVersion: 6,
+    ecmaFeatures: {
+      experimentalObjectRestSpread: true,
+    },
     parser: 'babel-eslint',
   },
   extends: [],
